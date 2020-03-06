@@ -631,9 +631,9 @@ function add_docker_host {
     DOCKER_HOST_IP=${DOCKER_HOST_IP-$(boot2docker ip)}
     local readonly host_entry="\n$DOCKER_HOST_IP $DOCKER_HOST_NAME"
 
-    log_info "Adding $DOCKER_HOST_NAME entry to $HOSTS_FILE so you can use http://$DOCKER_HOST_NAME URLs for testing"
-    log_instructions "Modifying $HOSTS_FILE requires sudo privileges, please enter your password."
-    sudo -k sh -c "echo \"$host_entry\" >> $HOSTS_FILE"
+    #log_info "Adding $DOCKER_HOST_NAME entry to $HOSTS_FILE so you can use http://$DOCKER_HOST_NAME URLs for testing"
+    #log_instructions "Modifying $HOSTS_FILE requires sudo privileges, please enter your password."
+    #sudo -k sh -c "echo \"$host_entry\" >> $HOSTS_FILE"
   fi
 }
 
@@ -735,14 +735,8 @@ function check_homebrew {
 function install_dependencies {
   brew_update
 
-  log_info "Setting up Cask"
-  if ! brew tap caskroom/cask; then
-    log_error "Failed to set up Cask. Check the log output above for reasons."
-    exit 1
-  fi
-
   brew_install "caskroom/cask/brew-cask" "Cask" "brew cask list" false
-  brew_install "boot2docker" "Boot2Docker" "type boot2docker" false
+  #brew_install "boot2docker" "Boot2Docker" "type boot2docker" false
   brew_install "docker-compose" "Docker Compose" "type docker-compose" false
   brew_install "docker-machine" "Docker Machine" "type docker-machine" false
   brew_install "fswatch" "fswatch" "type fswatch" false
